@@ -1,5 +1,4 @@
 import NextAuth from "next-auth";
-import { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
@@ -7,8 +6,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import KakaoProvider from "./auth-kakao";
 import { db } from "./db";
 import { verifyPassword } from "./password";
+import type { NextAuthConfig } from "next-auth";
 
-const providers: NextAuthOptions["providers"] = [];
+const providers: any[] = [];
 
 // Credentials Provider (이메일 + 비밀번호)
 providers.push(
@@ -82,7 +82,7 @@ if (process.env.KAKAO_CLIENT_ID && process.env.KAKAO_CLIENT_SECRET) {
   );
 }
 
-export const authOptions: NextAuthOptions = {
+const authConfig = {
   adapter: PrismaAdapter(db) as any,
   providers,
   pages: {
@@ -90,7 +90,7 @@ export const authOptions: NextAuthOptions = {
     verifyRequest: "/login?verifyRequest=true",
   },
   callbacks: {
-    async session({ session, user }) {
+    async session({ session, user }: any) {
       if (session.user) {
         session.user.id = user.id;
         session.user.name = user.name;
@@ -100,10 +100,13 @@ export const authOptions: NextAuthOptions = {
     },
   },
   session: {
-    strategy: "database",
+    strategy: "database" as const,
   },
 };
 
 // NextAuth v5 auth() function for API routes
-export const { auth, handlers, signIn, signOut } = NextAuth(authOptions);
+export const { auth, handlers, signIn, signOut } = NextAuth(authConfig);
+
+// Export for backward compatibility
+export const authOptions = authConfig;
 

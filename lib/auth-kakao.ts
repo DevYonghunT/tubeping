@@ -36,6 +36,6 @@ export default function KakaoProvider(
       };
     },
     ...options,
-  };
+  } as OAuthConfig<KakaoProfile>;
 }
 

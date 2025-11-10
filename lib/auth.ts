@@ -103,3 +103,7 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
+// NextAuth v5 auth() function
+import NextAuth from "next-auth";
+export const { auth, handlers, signIn, signOut } = NextAuth(authOptions);
+

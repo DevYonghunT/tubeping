@@ -19,16 +19,16 @@
 2. 다음 정보를 복사:
 
 ```
-✅ Project URL: https://[project-id].supabase.co
-✅ anon public key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-✅ service_role secret key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... (⚠️ 절대 노출 금지!)
+✅ Project URL: https://zghmrbigbpsvvyezecap.supabase.co
+✅ anon public key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnaG1yYmlnYnBzdnZ5ZXplY2FwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1MDU3MDgsImV4cCI6MjA3ODA4MTcwOH0.Bgk7dLhNt9aGDaaFNe9A5Vb8Afa3gtxElhN7aj7f91k
+✅ service_role secret key: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpnaG1yYmlnYnBzdnZ5ZXplY2FwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI1MDU3MDgsImV4cCI6MjA3ODA4MTcwOH0.Bgk7dLhNt9aGDaaFNe9A5Vb8Afa3gtxElhN7aj7f91k
 ```
 
 3. **Settings** → **Database** → **Connection string**
 4. **Connection pooling** → **URI** 복사:
 
 ```
-✅ Database URL: postgresql://postgres.[project-ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres
+✅ Database URL: postgresql://postgres:[YOUR_PASSWORD]@db.zghmrbigbpsvvyezecap.supabase.co:5432/postgres
 ```
 
 #### Prisma 스키마 적용

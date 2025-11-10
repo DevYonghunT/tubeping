@@ -1,3 +1,4 @@
+import NextAuth from "next-auth";
 import { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import GoogleProvider from "next-auth/providers/google";
@@ -103,7 +104,6 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-// NextAuth v5 auth() function
-import NextAuth from "next-auth";
+// NextAuth v5 auth() function for API routes
 export const { auth, handlers, signIn, signOut } = NextAuth(authOptions);
 

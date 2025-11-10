@@ -18,13 +18,13 @@ providers.push(
       email: { label: "이메일", type: "text" },
       password: { label: "비밀번호", type: "password" },
     },
-    async authorize(credentials) {
+    async authorize(credentials: any) {
       if (!credentials?.email || !credentials?.password) {
         throw new Error("이메일과 비밀번호를 입력해주세요.");
       }
 
       const user = await db.user.findUnique({
-        where: { email: credentials.email },
+        where: { email: credentials.email as string },
       });
 
       if (!user || !user.hashedPassword) {
@@ -32,7 +32,7 @@ providers.push(
       }
 
       const isValid = await verifyPassword(
-        credentials.password,
+        credentials.password as string,
         user.hashedPassword
       );
 

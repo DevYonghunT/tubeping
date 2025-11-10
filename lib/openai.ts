@@ -1,8 +1,18 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+let openaiClient: OpenAI | null = null;
+
+function getOpenAIClient(): OpenAI {
+  if (!openaiClient) {
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error("OPENAI_API_KEY is not set");
+    }
+    openaiClient = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return openaiClient;
+}
 
 export interface VideoSummary {
   title: string;
@@ -19,6 +29,7 @@ export async function generateVideoSummary(
   videoId?: string
 ): Promise<VideoSummary> {
   try {
+    const openai = getOpenAIClient();
     const prompt = `다음 유튜브 영상 정보를 바탕으로 간결하고 읽기 쉬운 요약을 작성해주세요.
 
 제목: ${videoTitle}
